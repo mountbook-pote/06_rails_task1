@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_05_17_052704) do
+ActiveRecord::Schema.define(version: 2025_05_17_084632) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2025_05_17_052704) do
     t.string "allday"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "schedule_memo"
   end
 
 end

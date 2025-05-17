@@ -1,0 +1,28 @@
+<h3>スケジュール詳細</h3>
+
+<div>
+  <ul>
+    <li><%= link_to "←一覧に戻る", :posts %></li>
+    <li><%= link_to "編集", [:edit, @post] %></li>
+  </ul>
+</div>
+
+<table class="table table-bordered">
+  <tr>
+    <th>開始日</th>
+    <td><%= @post.begin %></td>
+  </tr>
+  <tr>
+    <th>終了日</th>
+    <td><%= @post.end %></td>
+  </tr>
+  <tr>
+    <th>終日</th>
+    <td><%= @post.allday %></td>
+  </tr>
+  <tr>
+    <th>スケジュールメモ</th>
+    <td><%= @post.schedule_memo %></td>
+  </tr>
+</table>
+

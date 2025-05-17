@@ -10,15 +10,12 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>id</th>
+      <th>ID</th>
       <th>タイトル</th>
       <th>開始日</th>
       <th>終了日</th>
       <th>終日</th>
       <th>更新日時</th>
-      <th>詳細(ヘッダでは空にしておく)</th> 
-      <th>編集(ヘッダでは空にしておく)</th> 
-      <th>削除(ヘッダでは空にしておく)</th> 
     </tr>
   </thead>
 
@@ -26,23 +23,26 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.id %></td>
-        <td><%= post.name %></td>
-        <td><%= post.email %></td>
-        <td><%= post.age %></td>
-        <td><%= post.introduction %></td>
+        <td><%= post.title %></td>
+        <td><%= post.begin %></td>
+        <td><%= post.end %></td>
+         <td><%= post.allday %></td>
         <td><%= post.updated_at.to_s(:datetime_jp) %></td>
-        <td><%= post.created_at.to_s(:datetime_jp) %></td>
         <td><%= link_to "詳細", post %></td>
         <td><%= link_to "編集", [:edit, post] %></td>
-        <td><%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+        <td><%= link_to "削除", post, method: :delete, data: { confirm: "スケジュールを削除しますか？この操作は取り消せません" } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%# コンポーネントを追加 %>
+<%
+=begin %>
+<%# コンポーネントを追加 bootstrap動いてるかの確認用%>
 <div class="alert alert-primary" role="alert">
   A simple primary alert—check it out!
 </div>
+<%
+=end %>
 
 
