@@ -20,6 +20,7 @@
   </thead>
 
   <tbody>
+    <%count = 0%>
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.id %></td>
@@ -32,7 +33,18 @@
         <td><%= link_to "編集", [:edit, post] %></td>
         <td><%= link_to "削除", post, method: :delete, data: { confirm: "スケジュールを削除しますか？この操作は取り消せません" } %></td>
       </tr>
+      <%count += 1%>
     <% end %>
+    <p>予定の合計数：<%= count %></p>
+    <p>本日の日付：<span id = "text"></span></p>
+
+    <script>
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth()+1;
+        var day = today.getDate();
+        document.getElementById("text").textContent = `${year}年${month}月${day}日`;
+    </script>
   </tbody>
 </table>
 
