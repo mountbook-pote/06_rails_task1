@@ -7,7 +7,7 @@ class Post < ApplicationRecord
 
   private
     def enddate_earlier_than_begindate
-      if self[:end] < self[:begin]
+      if self[:end] != nil && self[:begin] != nil && self[:end] < self[:begin]
         errors.add(:end, "は開始日以降の日付にしてください")
       end
     end

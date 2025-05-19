@@ -1,13 +1,16 @@
-<h3>スケジュール管理アプリ</h3>
 
-<p><%= link_to "新規追加", :new_post %></p>
-<p>予定一覧</p>
+<div class="row">
+  <h5 class="col-6 d-flex justify-content-start">予定一覧</h5>
+  <div class="col-6 d-flex justify-content-end" >
+      <p><%= link_to "＋新規追加", :new_post, class: "btn btn-primary", style:"color: white;"%></p>
+  </div>
+</div>
 
 <% if flash[:notice] %>
     <p class="notice"><%= flash[:notice] %></p>
     <% end %>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-striped table-hover">
   <thead>
     <tr>
       <th>ID</th>
@@ -18,7 +21,6 @@
       <th>更新日時</th>
     </tr>
   </thead>
-
   <tbody>
     <%count = 0%>
     <% @posts.each do |post| %>
@@ -27,26 +29,63 @@
         <td><%= post.title %></td>
         <td><%= post.begin %></td>
         <td><%= post.end %></td>
-         <td><%= post.allday %></td>
+        <td><%= post.allday %></td>
         <td><%= post.updated_at.to_s(:datetime_jp) %></td>
         <td><%= link_to "詳細", post %></td>
         <td><%= link_to "編集", [:edit, post] %></td>
-        <td><%= link_to "削除", post, method: :delete, data: { confirm: "スケジュールを削除しますか？この操作は取り消せません" } %></td>
+        <td>
+          <button type="button" class="btn btn-link" 
+          data-bs-toggle="modal" data-bs-target="#exampleModal-<%= count %>">
+          削除</button>
+        </td>
+        <!--モーダル本体用のコード-->
+        <div class="modal " id="exampleModal-<%= count %>" tabindex="-1" aria-labelledby="exampleModalLabel-<%= count %>" aria-hidden="true">
+          <div class="modal-dialog ">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel-<%= count %>">予定を削除しますか？</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p><%= post.title%>を削除してよろしいですか？<br>この操作は取り消せません</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">キャンセル</button>
+                <%= link_to "削除", post, method: :delete, class: "btn btn-danger", style:"color: white;"%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--モーダル用のコード終わり-->
       </tr>
       <%count += 1%>
     <% end %>
-    <p>予定の合計数：<%= count %></p>
-    <p>本日の日付：<span id = "text"></span></p>
-
-    <script>
-        var today = new Date();
-        var year = today.getFullYear();
-        var month = today.getMonth()+1;
-        var day = today.getDate();
-        document.getElementById("text").textContent = `${year}年${month}月${day}日`;
-    </script>
   </tbody>
 </table>
+
+<footer>
+  <div class="row">
+    <p class="col-6 d-flex justify-content-start">予定の合計数：<%= count %></p>
+    <p class="col-6 d-flex justify-content-end">本日の日付：<span id = "text"></span></p>
+  </div>
+</footer>
+<script>
+  var today = new Date();
+  var year = today.getFullYear();
+  var month = today.getMonth()+1;
+  var day = today.getDate();
+  document.getElementById("text").textContent = `${year}年${month}月${day}日`;
+</script>
+
+
+<%
+=begin %>
+※以下は最初に使ってた削除ボタンのコード(モーダルなし)
+<td><%= link_to "削除", 
+post, method: :delete, 
+data: { confirm: "スケジュールを削除しますか？この操作は取り消せません" } %></td> 
+<%
+=end %>
 
 <%
 =begin %>

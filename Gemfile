@@ -59,6 +59,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #以下新規に追加
 gem 'psych', '~> 3.1'
 
+gem 'bootstrap-datetimepicker-rails'
+
 #gem 'bootstrap', '~> 4.5.0'
 #gem 'jquery-rails'   # Rails5.1以上の場合は追加
 

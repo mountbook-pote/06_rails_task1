@@ -13,6 +13,7 @@ class PostsController < ApplicationController
       flash[:notice] = "新しいスケジュールを登録しました"
       redirect_to :posts
     else
+      flash[:failed] = "スケジュールの登録に失敗しました"
       render "new"
     end
   end
@@ -31,6 +32,7 @@ class PostsController < ApplicationController
       flash[:notice] = "スケジュールを更新しました"
       redirect_to :posts
     else
+      flash[:failed] = "スケジュールの更新に失敗しました"
       render "edit"
     end
   end
