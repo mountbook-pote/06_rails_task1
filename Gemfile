@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'rails-i18n' #エラーメッセージの日本語化用
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,7 +42,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '4.2.1'
 end
 
 group :test do
@@ -57,3 +58,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #以下新規に追加
 gem 'psych', '~> 3.1'
+
+gem 'bootstrap-datetimepicker-rails' #カレンダー用のはずだが運用していない
+
+gem 'bigdecimal' #dbの一部エラー対策用
+
+gem 'mutex_m'  #dbの一部エラー対策用
+
+#gem 'bootstrap', '~> 4.5.0'
+#gem 'jquery-rails'   # Rails5.1以上の場合は追加
+

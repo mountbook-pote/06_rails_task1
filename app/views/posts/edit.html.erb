@@ -1,0 +1,40 @@
+<main class="new-edit">
+
+  <% if flash[:failed] %>
+    <p class="failed"><%= flash[:failed] %></p>
+  <% end %>
+
+  <h5>予定を編集してください</h5>
+  <%= form_with model: @post do |f| %>
+      <div><%= f.label :title ,"タイトル<span style='color: red;'>*</span>".html_safe %></div>
+      <div><%= f.text_field :title , class:"txt", placeholder: "タイトル" %></div>
+      <div class="new-edit-error"><%= render "shared/error", obj: @post, attribute: :title%></div>
+      
+      <div class="row">
+        <div class="col-6">
+          <div><%= f.label :begin ,"開始日<span style='color: red;'>*</span>".html_safe %></div>
+          <div><%= f.date_field :begin, class:"calender-area"  %></div>
+          <div class="new-edit-error"><%= render "shared/error", obj: @post, attribute: :begin%></div>
+        </div>
+        <div class="col-6 ">
+          <div><%= f.label :end ,"終了日<span style='color: red;'>*</span>".html_safe %></div>
+          <div><%= f.date_field :end, class:"calender-area" %></div>
+          <div class="new-edit-error"><%= render "shared/error", obj: @post, attribute: :end%></div>
+        </div>
+      </div>
+
+      <div>
+        <%= f.check_box :allday, {}, '○', '' %>
+        <%= f.label :allday ,"終日の場合はチェックを入れます" %>
+      </div>
+
+      <div><%= f.label :schedule_memo ,"スケジュールメモ" %></div>
+      <div><%= f.text_area :schedule_memo, class:"txt", placeholder: "メモを入力する" %></div>
+      <div class="error"><%= render "shared/error", obj: @post, attribute: :schedule_memo%></div>
+
+      <div class="cancelsave-buttons">
+          <p><%= link_to "キャンセル", :posts, class: "btn btn-light", style:"color: black;" %></p>
+          <p><%= f.submit "保存", class: "btn btn-primary", style:"color: white;"%></p>
+      </div>
+  <% end %>
+</main>
